@@ -18,7 +18,7 @@ Mediconnect is an innovative and thoughtful capstone project that aims to addres
 | Day 9 | Perform database read and write operation|
 | Day 10| Implement relations between entities|
 | Day 11| Initialise React app               |
-| Day 12| Create Frontend Components         |
+| Day 12| Create Frontend Components  |
 | Day 13| Work on login and logout page      |
 | Day 14| Deploy frontend server             |
 | Day 15| Match Design and end-state         |
