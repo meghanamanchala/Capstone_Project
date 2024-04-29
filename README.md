@@ -15,11 +15,11 @@ Mediconnect is an innovative and thoughtful capstone project that aims to addres
 | Day 6 | Create Backend schema              |
 | Day 7 | Connect to MongoDB                 |
 | Day 8 | Deploy Backend                     |
-| Day 9 | Perform database read and write operations|
+| Day 9 | Perform database read and write operation|
 | Day 10| Implement relations between entities|
-| Day 11| Implementing authentication |
-| Day 12| Work on login and logout page   |
-| Day 13| Use JWTs in application for login logout and register |
+| Day 11| Initialise React app               |
+| Day 12| Create Frontend Components         |
+| Day 13| Work on login and logout page      |
 | Day 14| Deploy frontend server             |
 | Day 15| Match Design and end-state         |
 | Day 16| Use JWT in app                     |
