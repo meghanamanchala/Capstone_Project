@@ -2,7 +2,8 @@
 const express = require('express');
 const connectDB = require('./config/db.js'); // Import the connectDB function
 const departmentRoutes = require('./routes/department.js'); // Import the department routes
-
+const userRoutes = require('./userRoutes')
+const postRoutes = require('./postRoutes.js')
 require('dotenv').config();
 
 // Initialize Express app
@@ -16,11 +17,11 @@ connectDB()
     
     // Use department routes
     app.use('/departments', departmentRoutes);
-
-    // Start the server
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-      console.log(`Server is listening on port ${PORT}`);
+    app.use('/authentication', userRoutes);
+    app.use('/comments',postRoutes);
+    // Start the server  
+    app.listen(3002, () => {
+      console.log('Server is listening on port 3002');
     });
   })
   .catch((err) => {
