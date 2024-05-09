@@ -2,8 +2,8 @@
 const express = require('express');
 const connectDB = require('./config/db.js'); 
 const departmentRoutes = require('./DepartmentRoutes/department.js'); 
-const userRoutes = require('./AuthenticationRoutes/userRoutes.js')
-const postRoutes = require('./PostQueryRoutes/postRoutes.js')
+// const userRoutes = require('./AuthenticationRoutes/userRoutes.js')
+// const postRoutes = require('./PostQueryRoutes/postRoutes.js')
 require('dotenv').config();
 
 // Initialize Express app
@@ -17,8 +17,8 @@ connectDB()
     
     // Use department routes
     app.use('/departments', departmentRoutes);
-    app.use('/authentication', userRoutes);
-    app.use('/posts', postRoutes);
+    // app.use('/authentication', userRoutes);
+    // app.use('/posts', postRoutes);
     
     // Start the server  
     app.listen(8080, () => {
