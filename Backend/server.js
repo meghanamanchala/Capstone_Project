@@ -1,9 +1,9 @@
 // server.js
 const express = require('express');
-const connectDB = require('./config/db.js'); // Import the connectDB function
-const departmentRoutes = require('./routes/department.js'); // Import the department routes
-const userRoutes = require('./userRoutes')
-const postRoutes = require('./postRoutes.js')
+const connectDB = require('./config/db.js'); 
+const departmentRoutes = require('./DepartmentRoutes/department.js'); 
+const userRoutes = require('./AuthenticationRoutes/userRoutes.js')
+const postRoutes = require('./PostQueryRoutes/postRoutes.js')
 require('dotenv').config();
 
 // Initialize Express app
@@ -18,10 +18,11 @@ connectDB()
     // Use department routes
     app.use('/departments', departmentRoutes);
     app.use('/authentication', userRoutes);
-    app.use('/comments',postRoutes);
+    app.use('/posts', postRoutes);
+    
     // Start the server  
-    app.listen(3002, () => {
-      console.log('Server is listening on port 3002');
+    app.listen(8080, () => {
+      console.log('Server is listening on port 8080');
     });
   })
   .catch((err) => {
