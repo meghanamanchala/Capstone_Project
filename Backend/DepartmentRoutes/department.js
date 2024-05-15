@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Department = require('./modeldep.js');
 
-// Generate routes dynamically for each department
 const departments = [
   { name: 'Anesthesiologist', model: Department.AnaesthesiaModel },
   { name: 'Cardiologist', model: Department.CardiologyModel },
@@ -25,13 +24,12 @@ const departments = [
 
 departments.forEach(department => {
 
-  // GET route to retrieve all departments of a specific type
   router.get(`/${department.name.toLowerCase()}`, async (req, res) => {
     try {
       const departments = await department.model.find();
       res.json(departments);
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(500).json({ Message: err.message });
     }
   });
 
