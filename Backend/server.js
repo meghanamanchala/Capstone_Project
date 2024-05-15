@@ -18,6 +18,10 @@ connectDB().then(() => {
     app.use('/departments', departmentRoutes);
     app.use('/authentication', userRoutes);
     app.use('/posts', postRoutes);
+
+    app.get('/', (req,res)=> {
+      res.status(200).send("Connected to DB");
+    })
     
     // Start the server  
     app.listen(8080, () => {
