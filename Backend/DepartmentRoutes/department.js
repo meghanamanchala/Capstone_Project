@@ -24,6 +24,7 @@ const departments = [
 
 
 departments.forEach(department => {
+
   // GET route to retrieve all departments of a specific type
   router.get(`/${department.name.toLowerCase()}`, async (req, res) => {
     try {
@@ -33,6 +34,23 @@ departments.forEach(department => {
       res.status(500).json({ message: err.message });
     }
   });
+
+  router.put(`/${department.name.toLowerCase()}/:id`, async (req, res) => {
+    try {
+      const updatedDepartment = await department.model.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }  
+      );
+      if (!updatedDepartment) {
+        return res.status(404).json({ message: 'Department not found' });
+      }
+      res.json(updatedDepartment);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  });
+
 });
 
 module.exports = router;
