@@ -1,5 +1,4 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
 const UserModel = require("./userSchema");
 const userRoute = express.Router();
 
@@ -14,13 +13,10 @@ userRoute.post("/register", async (req, res) => {
             return res.status(409).send({ msg: "Username or email already exists." });
         }
 
-        // Hash the password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
         // Create new user
         const newUser = new UserModel({
             username,
-            password: hashedPassword,
+            password, // Storing password in plaintext for demonstration purposes (not recommended in production)
             email
         });
 
@@ -44,9 +40,8 @@ userRoute.post("/login", async (req, res) => {
             return res.status(404).send({ msg: "User not found." });
         }
 
-        // Compare passwords
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
+        // Compare passwords (plaintext comparison)
+        if (user.password !== password) {
             return res.status(401).send({ msg: "Invalid username or password." });
         }
 
@@ -59,19 +54,7 @@ userRoute.post("/login", async (req, res) => {
 // Logout endpoint
 userRoute.post("/logout", async (req, res) => {
     try {
-      const { username, password } = req.body;
-
-      // Find the user by username
-      const user = await UserModel.findOne({ username });
-      if (!user) {
-          return res.status(404).send({ msg: "User not found." });
-      }
-
-      // Compare passwords
-      const passwordMatch = await bcrypt.compare(password, user.password);
-      if (!passwordMatch) {
-          return res.status(401).send({ msg: "Invalid username or password." });
-      }
+        // Implementation for logout logic
         res.status(200).send("Logged out successfully");
     } catch (error) {
         res.status(500).send({ error: "Internal server error" });
