@@ -1,24 +1,20 @@
 {
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "mongodb": "^6.5.0",
-    "mongoose": "^8.3.2",
-    "nodemon": "^3.1.0"
-  },
-  "name": "capstone_project",
-  "description": "Mediconnect is an innovative and thoughtful capstone project that aims to address a common problem faced by many people suffering from various illnesses and disorders - the tedious and time-consuming process of booking appointments with doctors. By creating a web application that simplifies the appointment booking process, Mediconnect has the potential to make a significant and positive impact on people's lives.",
+  "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server.js"
+    "server":"nodemon server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.4",
+    "nodemon": "^3.1.0"
+  }
 }
