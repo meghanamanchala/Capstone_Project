@@ -11,8 +11,7 @@ const app = express();
 app.use(express.json());
 
 // Connect to MongoDB
-connectDB()
-  .then(() => {
+connectDB().then(() => {
     console.log('Connected to MongoDB');
     
     // Use routes
@@ -24,7 +23,6 @@ connectDB()
     app.listen(8080, () => {
       console.log('Server is listening on port 8080');
     });
-  })
-  .catch((err) => {
+  }).catch((err) => {
     console.error('Error connecting to MongoDB:', err);
   });
