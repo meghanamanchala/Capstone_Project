@@ -15,7 +15,7 @@ connectDB()
   .then(() => {
     console.log('Connected to MongoDB');
     
-    // Use department routes
+    // Use routes
     app.use('/departments', departmentRoutes);
     app.use('/authentication', userRoutes);
     app.use('/posts', postRoutes);
