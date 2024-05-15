@@ -1,7 +1,5 @@
-// models/Department.js
 const mongoose = require('mongoose');
 
-// Function to create a schema and model for a department
 function createDepartmentModel(departmentName) {
   const DepartmentSchema = new mongoose.Schema({
     name: String,
@@ -13,7 +11,6 @@ function createDepartmentModel(departmentName) {
   return mongoose.model(departmentName, DepartmentSchema);
 }
 
-// Create models for different departments
 const AnaesthesiaModel = createDepartmentModel('Anaesthesia');
 const CardiologyModel = createDepartmentModel('Cardiology');
 const DentalModel = createDepartmentModel('Dental');
