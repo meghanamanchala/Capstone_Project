@@ -39,9 +39,6 @@ departments.forEach(department => {
         req.params.id,
         req.body,
         { new: true, runValidators: true }  
-
-      
-
       );
       if (!updatedDepartment) {
         return res.status(404).json({ message: 'Department not found' });
