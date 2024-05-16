@@ -38,10 +38,7 @@ departments.forEach(department => {
       const updatedDepartment = await department.model.findByIdAndUpdate(
         req.params.id,
         req.body,
-
-        { new: true, runValidators: true}  
-        { new: true , runValidators: true }  
-
+        { new: true, runValidators: true }  
       );
       if (!updatedDepartment) {
         return res.status(404).json({ message: 'Department not found' });
