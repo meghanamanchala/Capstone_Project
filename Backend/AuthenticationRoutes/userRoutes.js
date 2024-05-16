@@ -50,17 +50,6 @@ userRoute.post("/login", async (req, res) => {
 
 userRoute.post("/logout", async (req, res) => {
     try {
-      const { username, password } = req.body;
-
-      const user = await UserModel.findOne({ username });
-      if (!user) {
-          return res.status(404).send({ msg: "User not found." });
-      }
-
-      const passwordMatch = await bcrypt.compare(password, user.password);
-      if (!passwordMatch) {
-          return res.status(401).send({ msg: "Invalid username or password." });
-      }
         res.status(200).send("Logged out successfully");
     } catch (error) {
         res.status(500).send({ error: "Internal server error" });
