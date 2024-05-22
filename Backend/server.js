@@ -4,6 +4,8 @@ const cors = require('cors');
 const departmentRoutes = require('./DepartmentRoutes/department.js'); 
 const userRoutes = require('./AuthenticationRoutes/userRoutes.js');
 const postRoutes = require('./PostQueryRoutes/postRoutes.js');
+const patientRoutes = require('./PatientDetails/patientdetailsroutes.js')
+
 require('dotenv').config();
 
 const app = express();
@@ -13,6 +15,7 @@ app.use(cors());
 app.use('/departments', departmentRoutes);
 app.use('/authentication', userRoutes);
 app.use('/posts', postRoutes);
+app.use('/patients', patientRoutes);
 
 app.get('/', (req, res) => {
     res.status(200).send("Connected to DB");
