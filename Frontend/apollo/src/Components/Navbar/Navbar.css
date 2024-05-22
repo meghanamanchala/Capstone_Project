@@ -1,0 +1,79 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding:40px;
+}
+.nav-section
+{
+    display: flex;
+align-items: center;   
+ background-color: #caf0f8;
+    height: 150px;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav img{
+    width: 200px;
+    transition: transform 0.2s ease;
+
+}
+nav img:hover{
+    transform: scale(1.1);
+}
+.account{
+    width: 80px;
+    margin-left: 250px;
+}
+nav a {
+    margin-left: 280px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    margin-top: 25px;
+    text-decoration: none; 
+    padding: 10px; 
+    color:white;
+    background-color: black; 
+    border-radius: 30px;
+    transition: transform 0.2s ease;
+    text-shadow: 2px 0px 4px rgba(0, 0, 0, 0.149);
+
+}
+
+nav a:hover {
+   background-color: aliceblue;
+   color: blue;
+    transform: scale(1.1);
+}
+.account-popup {
+    display: none;
+    position: absolute;
+    background-color: #d55353;
+    min-width: 120px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    z-index: 1;
+    border-radius: 8px;
+    padding-bottom: 30px;
+    margin: 20px;
+  }
+  
+  .account-popup a {
+    text-decoration: none;
+    display: block;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .account-popup a:hover {
+    background-color: #b83f3f;
+  }
+  
+  .account-container:hover .account-popup {
+    display: block;
+  }
+  
+  
