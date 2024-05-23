@@ -15,9 +15,9 @@ function Navbar() {
     <nav className='nav-section'>
       <ul>
         <li><img className='logo' src={logo} alt="Logo" /></li>
-        <li><Link to="/">HOME</Link></li>
-        <li><Link to="/appointment">APPOINTMENT</Link></li>
-        <li><Link to="/queries">QUERIES</Link></li>
+        <li><Link to="/" style={{ textDecoration: 'none' }}>HOME</Link></li>
+        <li><Link to="/appointment" style={{ textDecoration: 'none' }}>APPOINTMENT</Link></li>
+        <li><Link to="/queries" style={{ textDecoration: 'none' }}>QUERIES</Link></li>
         <li className="account-container" onClick={togglePopup}>
           <img className='account' src={account} alt="account" />
           {popupVisible && (

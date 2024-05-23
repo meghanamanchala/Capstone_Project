@@ -20,7 +20,7 @@ function Appointment() {
               <div className="image-container">
                 <img src={department.image} alt={department.name} className="img-fluid" />
               </div>
-              <Link to={`/departments/${department.name.toLowerCase()}`} className='link-no-underline'>
+              <Link to={`/departments/${department.name.toLowerCase()}`} className='link-no-underline' style={{ textDecoration: 'none' }}>
                 <div className='deptname text-left mt-2 mb-2'>
                   <p>{department.name}</p>
                   <img src={next} alt='right-arrow' />

@@ -5,6 +5,10 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './DocAppointment.css'
 import femaleDoctorImg from '../assests/female-doctor.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import maleDoctorImg from '../assests/male-doctor.png';
 function DocAppointment() {
   const { departmentName, doctorId } = useParams(); 
@@ -68,8 +72,8 @@ function DocAppointment() {
       // Send a POST request to your backend server
       await axios.post('http://localhost:3000/patients', patientDetails);
 
-      console.log('Patient details submitted successfully');
-      window.alert('Patient details submitted successfully');
+      // console.log('Patient details submitted successfully');
+      // window.alert('Patient details submitted successfully');
 
       // Reset the form
       setPatientDetails({
@@ -81,7 +85,9 @@ function DocAppointment() {
         amount: '',
         reason: ''
       });
+      toast.success('Patient details submitted successfully');
     } catch (error) {
+      toast.error('Error while submitting patient details');
       console.error('Error submitting patient details:', error);
     }
   };
@@ -89,7 +95,8 @@ function DocAppointment() {
   return (
     <>
     <Navbar />
-    <div className="doctor-details">
+    <ToastContainer />
+    <div className="doctor-boxing">
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -97,20 +104,32 @@ function DocAppointment() {
       ) : doctor ? (
         <>
           <div className="doctor-info">
-            <div className="doctor-image">
-              <img className="doctor-img" src={doctor.gender === 'Male' ? maleDoctorImg : femaleDoctorImg} alt="doctor-img" />
+            <div className="doctor-image-box">
+              <img className="doctor-picture" src={doctor.gender === 'Male' ? maleDoctorImg : femaleDoctorImg} alt="doctor-img" />
             </div>
             <div className="doctor-details">
-              <h2>{doctor.name}</h2>
-              <p>Experience: {doctor.experience}</p>
-              <p>Education: {doctor.education}</p>
-              <p>Languages Spoken: {doctor.languagesSpoken}</p>
-              <div className='head'>
-                <h3>Fill Patient Details</h3>
+            <div className='side-by-side'>
+              <div>Doctor Name:</div>
+              <p>{doctor.name}</p>
+              </div>
+              <div className='side-by-side'>
+                <div>Experience: </div>
+                <p>{doctor.experience}</p>
+              </div>
+              <div className='side-by-side'>
+                <div >Education: </div>
+              <p>{doctor.education}</p>
+              </div>
+              <div className='side-by-side'>
+                <div>Languages Spoken:</div>
+              <p>{doctor.languagesSpoken}</p>
               </div>
             </div>
+           
           </div>
+
           <form className="appointment-form" onSubmit={handleSubmit}>
+                <h3 className='text-center title'>Fill Patient Details</h3>
             <div className="input-row">
               <div className="input-group">
                 <label htmlFor="firstName">First Name:</label>
