@@ -7,8 +7,9 @@ import Queries from './Components/Queries/Queries.jsx';
 import DocAppointment from './Components/DocAppointment/DocAppointment.jsx';
 import Department from './Department.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginForm from './Components/Loginpage/Login.jsx';
+import RegisterForm from './Components/RegisterPage/Register.jsx';
 
-// Define an array of department names and paths
 const departments = [
   { name: "Anesthesiologist", path: "anaesthesia" },
   { name: "Cardiologist", path: "cardiology" },
@@ -43,6 +44,8 @@ function App() {
           />
         ))}
         <Route path="/book-appointment/:departmentName/:doctorId" element={<DocAppointment />} />
+        <Route path='/register' element={<RegisterForm />}/>
+        <Route path="/login" element={<LoginForm />} />
       </Routes>
     </>
   );

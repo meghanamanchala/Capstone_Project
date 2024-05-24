@@ -1,16 +1,18 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
-import "./Navbar.css";
-import logo from "../assests/logo.jpeg"; 
+import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import logo from "../assests/logo.jpeg";
 import account from '../assests/account.png'
-import { Link } from 'react-router-dom'; 
+import "./Navbar.css";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverCloseButton,
+} from '@chakra-ui/react'
 
 function Navbar() {
-  const [popupVisible, setPopupVisible] = useState(false);
 
-  const togglePopup = () => {
-    setPopupVisible(!popupVisible);
-  };
   return (
     <nav className='nav-section'>
       <ul>
@@ -18,18 +20,20 @@ function Navbar() {
         <li><Link to="/" style={{ textDecoration: 'none' }}>HOME</Link></li>
         <li><Link to="/appointment" style={{ textDecoration: 'none' }}>APPOINTMENT</Link></li>
         <li><Link to="/queries" style={{ textDecoration: 'none' }}>QUERIES</Link></li>
-        <li className="account-container" onClick={togglePopup}>
-          <img className='account' src={account} alt="account" />
-          {popupVisible && (
-            <div className="account-popup">
-              <a href="#">Login</a>
-              <a href="#">Logout</a>
-            </div>
-          )}
-       </li>
+        
+          <li className="account-container">
+          <Popover>
+            <PopoverTrigger>
+              <img className='account' src={account} cursor='pointer' alt="account" />
+            </PopoverTrigger>
+            <PopoverContent style={{ border: '1px solid #ccc', backgroundColor:"#CAF0F8",margin:'10px',padding: '1em' }}>
+              <PopoverCloseButton style={{position:'relative',width:'20px',marginLeft:"300px",border:'none',backgroundColor:'transparent'}}/>
+              <Link style={{position:'relative',right:'200px',textDecoration: 'none' }} to='/login'>Login</Link>
+            </PopoverContent>
+            </Popover>
+          </li>
       </ul>
     </nav>
-    
   );
 }
 

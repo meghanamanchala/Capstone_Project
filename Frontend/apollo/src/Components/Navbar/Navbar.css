@@ -48,32 +48,10 @@ nav a:hover {
    color: blue;
     transform: scale(1.1);
 }
-.account-popup {
-    display: none;
-    position: absolute;
-    background-color: #d55353;
-    min-width: 120px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 8px;
-    z-index: 1;
-    border-radius: 8px;
-    padding-bottom: 30px;
-    margin: 20px;
-  }
+
   
-  .account-popup a {
-    text-decoration: none;
-    display: block;
-    padding: 8px 16px;
-    transition: background-color 0.3s ease;
-  }
+ 
   
-  .account-popup a:hover {
-    background-color: #b83f3f;
-  }
-  
-  .account-container:hover .account-popup {
-    display: block;
-  }
+
   
   
