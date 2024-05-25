@@ -9,6 +9,7 @@ import Department from './Department.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components/Loginpage/Login.jsx';
 import RegisterForm from './Components/RegisterPage/Register.jsx';
+import DoctorLogin from './Components/DoctorLoginPage/DoctorLogin.jsx';
 
 const departments = [
   { name: "Anesthesiologist", path: "anaesthesia" },
@@ -46,6 +47,7 @@ function App() {
         <Route path="/book-appointment/:departmentName/:doctorId" element={<DocAppointment />} />
         <Route path='/register' element={<RegisterForm />}/>
         <Route path="/login" element={<LoginForm />} />
+        <Route path='/doctorlogin' element={<DoctorLogin />}/>
       </Routes>
     </>
   );

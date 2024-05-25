@@ -77,6 +77,9 @@ function LoginForm() {
                 <div>
                     <h3>Not a member ? <Link to='/register'>Register here</Link> </h3>
                 </div>
+                <div>
+                    <h4><Link to='/doctorlogin'>LOGIN</Link> as Doctor</h4>
+                </div>
             </form>
             </div>
         </div>
