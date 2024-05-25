@@ -69,13 +69,8 @@ function DocAppointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send a POST request to your backend server
       await axios.post('http://localhost:3000/patients', patientDetails);
 
-      // console.log('Patient details submitted successfully');
-      // window.alert('Patient details submitted successfully');
-
-      // Reset the form
       setPatientDetails({
         firstName: '',
         lastName: '',
