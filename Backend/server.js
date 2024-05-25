@@ -25,7 +25,7 @@ connectDB().then(() => {
     console.log('Connected to MongoDB');
     
     app.listen(3000, () => {
-        console.log('Server is listening on port 8080');
+        console.log('Server is listening on port');
     });
 }).catch((err) => {
     console.error('Error connecting to MongoDB:', err);
