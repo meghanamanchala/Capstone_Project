@@ -5,6 +5,7 @@ import './Login.css';
 import LoginImg from '../assests/login.jpg';
 import { Link } from 'react-router-dom';
 import arrow from '../assests/arrow.png';
+import Cookies from 'js-cookie';
 
 function LoginForm() {
     const [loginUser, setLoginUser] = useState({
@@ -26,6 +27,7 @@ function LoginForm() {
                 password: loginUser.password
             });
             if (response.status === 200) {
+                Cookies.set('loggedIn', 'true');
                 window.location.href = '/';
                 window.alert('Login successful');
                 console.log(response.data);
@@ -78,7 +80,7 @@ function LoginForm() {
                     <h3>Not a member ? <Link to='/register'>Register here</Link> </h3>
                 </div>
                 <div>
-                    <h4><Link to='/doctorlogin'>LOGIN</Link> as Doctor</h4>
+                    <h4><Link to='/doctorlogin'>Login</Link> as Doctor</h4>
                 </div>
             </form>
             </div>
