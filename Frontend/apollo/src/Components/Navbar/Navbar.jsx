@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from "../assests/logo.jpeg";
 import account from '../assests/account.png'
 import "./Navbar.css";
+import Cookies from 'js-cookie';
 import {
   Popover,
   PopoverTrigger,
@@ -12,7 +13,14 @@ import {
 } from '@chakra-ui/react'
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get('loggedIn') === 'true');
 
+  const handleLogout = (e) => {
+      e.preventDefault();
+      console.log("Logging out...");
+      Cookies.remove('loggedIn', { path: '/' });
+      setIsLoggedIn(false); 
+  };
   return (
     <nav className='nav-section'>
       <ul>
@@ -20,8 +28,10 @@ function Navbar() {
         <li><Link to="/" style={{ textDecoration: 'none' }}>HOME</Link></li>
         <li><Link to="/appointment" style={{ textDecoration: 'none' }}>APPOINTMENT</Link></li>
         <li><Link to="/queries" style={{ textDecoration: 'none' }}>QUERIES</Link></li>
-        
-          <li className="account-container">
+        <li className="account-container">
+        {isLoggedIn ? (
+        <Link onClick={handleLogout}>Logout</Link> 
+          ) : (
           <Popover>
             <PopoverTrigger>
               <img className='account' src={account} cursor='pointer' alt="account" />
@@ -31,6 +41,7 @@ function Navbar() {
               <Link style={{position:'relative',right:'200px',textDecoration: 'none' }} to='/login'>Login</Link>
             </PopoverContent>
             </Popover>
+          )}
           </li>
       </ul>
     </nav>
