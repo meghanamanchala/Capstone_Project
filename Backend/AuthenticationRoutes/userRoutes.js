@@ -1,12 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const UserModel = require("./userSchema");
-const userRoute = express.Router();
 const multer = require("multer");
+const userRoute = express.Router();
 const path = require('path');
 const fs = require('fs');
 
-const uploadsDir = path.join(__dirname,'../fileuploads');
+const uploadsDir = path.join(__dirname,'../uploads');
 if(!fs.existsSync(uploadsDir)){
     fs.mkdirSync(uploadsDir);
 }
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-userRoute.post("/register",upload.single('profilePicture'),async (req, res) => {
+userRoute.post("/register",upload.single('profilePicture'), async (req, res) => {
     try {
         const { username, password, email } = req.body;
 
@@ -71,8 +71,10 @@ userRoute.post("/login", async (req, res) => {
 });
 
 userRoute.post("/logout", async (req, res) => {
-    try {    
-        res.status(200).send("Logged out successfully");
+    try {
+    res.clearCookie('loggedIn');
+    res.status(200).send("Logged out successfully");
+
     } catch (error) {
         res.status(500).send({ error: "Internal server error" });
     }
