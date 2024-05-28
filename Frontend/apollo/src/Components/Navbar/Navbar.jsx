@@ -30,7 +30,7 @@ function Navbar() {
         <li><Link to="/queries" style={{ textDecoration: 'none' }}>QUERIES</Link></li>
         <li className="account-container">
         {isLoggedIn ? (
-        <Link onClick={handleLogout}>Logout</Link> 
+        <Link style={{textDecoration: 'none'}}onClick={handleLogout}>Logout</Link> 
           ) : (
           <Popover>
             <PopoverTrigger>
