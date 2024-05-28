@@ -5,6 +5,7 @@ const multer = require("multer");
 const userRoute = express.Router();
 const path = require('path');
 const fs = require('fs');
+const { registerSchema, loginSchema } = require('./validation.js'); 
 
 const uploadsDir = path.join(__dirname,'../uploads');
 if(!fs.existsSync(uploadsDir)){
@@ -24,8 +25,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-userRoute.post("/register",upload.single('profilePicture'), async (req, res) => {
+userRoute.post("/register", upload.single('profilePicture'), async (req, res) => {
     try {
+        const { error, value } = registerSchema.validate(req.body);
+        if (error) {
+            return res.status(400).send({ error: error.details[0].message });
+        }
         const { username, password, email } = req.body;
 
         const existingUser = await UserModel.findOne({ $or: [{ username }, { email }] });
@@ -52,6 +57,11 @@ userRoute.post("/register",upload.single('profilePicture'), async (req, res) => 
 
 userRoute.post("/login", async (req, res) => {
     try {
+        const { error, value } = loginSchema.validate(req.body);
+
+        if (error) {
+            return res.status(400).send({ error: error.details[0].message });
+        }
         const { username, password } = req.body;
 
         const user = await UserModel.findOne({ username });
@@ -72,9 +82,8 @@ userRoute.post("/login", async (req, res) => {
 
 userRoute.post("/logout", async (req, res) => {
     try {
-    res.clearCookie('loggedIn');
-    res.status(200).send("Logged out successfully");
-
+        res.clearCookie('loggedIn');
+        res.status(200).send("Logged out successfully");
     } catch (error) {
         res.status(500).send({ error: "Internal server error" });
     }
