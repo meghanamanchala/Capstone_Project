@@ -58,7 +58,7 @@ function Register() {
             <input className='register-input' type="email" value={registerUser.email} onChange={(e) => handleChange(e,'email')} />
         </div>
         <div>
-            <label className="register-label">Username:   </label>
+            <label className="register-label">Username:</label>
             <input className="register-input" type="text" value={registerUser.username} onChange={(e) => handleChange(e, "username")} />
         </div>
         <div>
@@ -66,7 +66,7 @@ function Register() {
             <input className="register-input" type="password" value={registerUser.password} onChange={(e) => handleChange(e, "password")} />
         </div>
         <div>
-            <label className="register-label">Upload your file: </label>
+            <label className="register-label">Upload your file:</label>
             <input className="register-input" type="file" onChange={handleFileChange} />
         </div>
         <div className='registerBtn-container'>
