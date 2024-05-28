@@ -5,6 +5,10 @@ const multer = require("multer");
 const userRoute = express.Router();
 const path = require('path');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const { registerSchema, loginSchema } = require('./validation.js'); 
+
+const secretKey = process.env.JWT_SECRET;
 
 const uploadsDir = path.join(__dirname,'../uploads');
 if(!fs.existsSync(uploadsDir)){
@@ -73,6 +77,10 @@ userRoute.post("/login", async (req, res) => {
         if (!passwordMatch) {
             return res.status(401).send({ msg: "Invalid username or password." });
         }
+        const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
+        
+        res.cookie('token', token, { httpOnly: true }); 
+        res.cookie('loggedIn', true, { httpOnly: false }); 
 
         res.status(200).send({ msg: "Logged in successfully." });
     } catch (error) {
@@ -82,6 +90,9 @@ userRoute.post("/login", async (req, res) => {
 
 userRoute.post("/logout", async (req, res) => {
     try {
+    res.clearCookie("token");
+    res.clearCookie('loggedIn');
+    res.clearCookie("username");
     res.status(200).send("Logged out successfully");
     } catch (error) {
         res.status(500).send({ error: "Internal server error" });
