@@ -2,8 +2,29 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const UserModel = require("./userSchema");
 const userRoute = express.Router();
+const multer = require("multer");
+const path = require('path');
+const fs = require('fs');
 
-userRoute.post("/register", async (req, res) => {
+const uploadsDir = path.join(__dirname,'../fileuploads');
+if(!fs.existsSync(uploadsDir)){
+    fs.mkdirSync(uploadsDir);
+}
+
+// Multer storage configuration
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/'); // Uploads directory
+    },
+    filename: function(req, file, cb) {
+        // Generate unique filename
+        cb(null, Date.now() + '-' + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
+userRoute.post("/register",upload.single('profilePicture'),async (req, res) => {
     try {
         const { username, password, email } = req.body;
 
@@ -17,7 +38,8 @@ userRoute.post("/register", async (req, res) => {
         const newUser = new UserModel({
             username,
             password: hashedPassword,
-            email
+            email,
+            profilePicture: req.file ? req.file.path : null // Save profile picture path
         });
 
         await newUser.save();
