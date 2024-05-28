@@ -14,7 +14,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     width: 500px;
-    height: 550px;
+    height: 640px;
 }
 
 .register-form label {
@@ -34,7 +34,8 @@
 
 .register-form .error {
     color: red;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+
 }
 .button-19 {
     appearance: button;
