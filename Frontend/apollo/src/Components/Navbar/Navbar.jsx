@@ -19,6 +19,7 @@ function Navbar() {
       e.preventDefault();
       console.log("Logging out...");
       Cookies.remove('loggedIn', { path: '/' });
+      Cookies.remove('username', { path: '/' });
       setIsLoggedIn(false); 
   };
   return (

@@ -59,6 +59,7 @@ function LoginForm() {
             });
             if (response.status === 200) {
                 Cookies.set('loggedIn', 'true');
+                Cookies.set('username', loginUser.username);
                 window.location.href = '/';
                 window.alert('Login successful');
                 console.log(response.data);
