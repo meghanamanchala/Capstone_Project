@@ -193,3 +193,25 @@ font-weight:500;
   background: rgba(0, 0, 0, .08);
   color: rgba(0, 0, 0, .3);
 }
+.filters {
+display: flex;
+flex-direction: column;
+justify-content: end;
+align-items: end;
+margin-top: 20px;
+gap:20px;
+background-color: grey;
+color: white;
+}
+.filter-heading > h3{
+margin: 2px;
+}
+.filter-section{
+  display: flex;
+  gap:20px;
+ 
+}
+.filter-section label {
+  font-size: larger;
+  margin-right: 5px;
+}
