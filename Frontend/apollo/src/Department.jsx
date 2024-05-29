@@ -18,6 +18,8 @@ function Department({ departmentName }) {
   const [doctors, setDoctors] = useState([]);
   const isLoggedIn = Cookies.get('loggedIn') === 'true';
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+  const [filters, setFilters] = useState({ experience: '', gender: '', language: '' });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,20 +27,92 @@ function Department({ departmentName }) {
         // eslint-disable-next-line react/prop-types
         const response = await axios.get(`http://localhost:3000/departments/${departmentName.toLowerCase()}`);
         setDoctors(response.data);
+        setFilteredDoctors(response.data);
+        setFilters({ experience: '', gender: '', language: '' });
       } catch (err) {
         console.error("Error while fetching data", err);
       }
     };
     fetchData();
   }, [departmentName]);
+  // Function to apply filters and update filtered doctors
+  const applyFilters = () => {
+    let filtered = doctors;
 
+    // Apply filters based on experience, gender, and language
+    if (filters.experience) {
+      const [min, max] = filters.experience.split('-').map(Number);
+      filtered = filtered.filter(doctor => {
+        const experience = parseInt(doctor.experience);
+        return experience >= min && (max === undefined || experience <= max);
+      });
+    }
+  
+    if (filters.gender) {
+      filtered = filtered.filter(doctor => doctor.gender === filters.gender);
+    }
+    if (filters.language) {
+      filtered = filtered.filter(doctor => doctor.languagesSpoken.includes(filters.language));
+    }
+
+    setFilteredDoctors(filtered);
+  };
+
+  // Handle filter change
+  const handleFilterChange = (filterType, value) => {
+    setFilters(prevFilters => ({ ...prevFilters, [filterType]: value }));
+  };
+
+  // Function to clear all filters
+  const clearFilters = () => {
+    setFilters({ experience: '', gender: '', language: '' });
+    setFilteredDoctors(doctors);
+  };
+  
   return (
     <>
       <Navbar />
+      <div className="filters">
+        <div className='filter-heading'>
+        <h3>Filter Doctors:</h3>
+        </div>
+        <div className='filter-section'>
+        <div>
+          <label>Experience:</label>
+          <select value={filters.experience} onChange={e => handleFilterChange('experience', e.target.value)}>
+            <option value="">All</option>
+            <option value="0-5">0-5 years</option>
+            <option value="6-10">6-10 years</option>
+            <option value="11-15">11-15 years</option>
+            <option value="16+">16+ years</option>
+          </select>
+        </div>
+        <div>
+          <label>Gender:</label>
+          <select value={filters.gender} onChange={e => handleFilterChange('gender', e.target.value)}>
+            <option value="">All</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Language:</label>
+          <select value={filters.language} onChange={e => handleFilterChange('language', e.target.value)}>
+            <option value="">All</option>
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+          </select>
+        </div>
+        </div>
+        <div className='filter-buttons'>
+        <button className="btn btn-light m-1" onClick={applyFilters}>Apply Filters</button>
+        <button className="btn btn-light m-1"onClick={clearFilters}>Clear Filters</button>
+        </div>
+      </div>
       <div className='department'>
         <h2 className='mb-4'>Consult {departmentName}</h2>
         <ul className="doctor-list">
-          {doctors.map((doctor) => (
+          {filteredDoctors.map((doctor) => (
             <li key={doctor._id} className="doctor-item">
               <div className="doctor-box">
                 <div className='doct'>
@@ -77,7 +151,7 @@ function Department({ departmentName }) {
                             <button className="modal-button button-18">Login</button>
                           </Link>
                         </ModalBody>
-                        <hr className='line'/>
+                        <hr className='line' />
                         <ModalFooter className="modal-footer">
                           <Button onClick={onClose} className="modal-button button-18 ">Close</Button>
                         </ModalFooter>
