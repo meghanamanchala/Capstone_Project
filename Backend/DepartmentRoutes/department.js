@@ -33,6 +33,16 @@ departments.forEach(department => {
     }
   });
 
+  router.post(`/${department.name.toLowerCase()}`, async (req, res) => {
+    try {
+      const newDepartments = Array.isArray(req.body) ? req.body : [req.body];
+      const savedDepartments = await department.model.insertMany(newDepartments);
+      res.status(201).json(savedDepartments);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  });
+
   router.put(`/${department.name.toLowerCase()}/:id`, async (req, res) => {
     try {
       const updatedDepartment = await department.model.findByIdAndUpdate(
