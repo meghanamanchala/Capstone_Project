@@ -25,7 +25,7 @@ function Department({ departmentName }) {
     const fetchData = async () => {
       try {
         // eslint-disable-next-line react/prop-types
-        const response = await axios.get(`http://localhost:3000/departments/${departmentName.toLowerCase()}`);
+        const response = await axios.get(`http://localhost:3000/departments/${departmentName.toLowerCase().replace(' ', '-')}`);
         setDoctors(response.data);
         setFilteredDoctors(response.data);
         setFilters({ experience: '', gender: '', language: '' });

@@ -5,16 +5,16 @@ const Department = require('./modeldep.js');
 const departments = [
   { name: 'Anesthesiologist', model: Department.AnaesthesiaModel },
   { name: 'Cardiologist', model: Department.CardiologyModel },
-  { name: 'Dentologist', model: Department.DentalModel },
+  { name: 'Dentist', model: Department.DentalModel },
   { name: 'Dermatologist', model: Department.DermatologyModel },
-  { name: 'ENTologist', model: Department.ENTModel },
+  { name: 'ENT Specialist', model: Department.ENTModel },
   { name: 'Gastroenterologist', model: Department.GastroenterologyModel },
   { name: 'Gynecologist', model: Department.GynecologistModel },
   { name: 'Nephrologist', model: Department.NephrologyModel },
   { name: 'Neurologist', model: Department.NeurologyModel },
   { name: 'Ophthalmologist', model: Department.OphthalmologyModel },
   { name: 'Oncologist', model: Department.OncologyModel },
-  { name: 'Orthopedicologist', model: Department.OrthopedicModel },
+  { name: 'Orthopedic Surgeon', model: Department.OrthopedicModel },
   { name: 'Pediatrician', model: Department.PediatricsModel },
   { name: 'Pulmonologist', model: Department.PulmonologyModel },
   { name: 'Radiologist', model: Department.RadiologyModel },
@@ -24,7 +24,7 @@ const departments = [
 
 departments.forEach(department => {
 
-  router.get(`/${department.name.toLowerCase()}`, async (req, res) => {
+  router.get(`/${department.name.toLowerCase().replace(' ', '-')}`, async (req, res) => {
     try {
       const departments = await department.model.find();
       res.json(departments);
