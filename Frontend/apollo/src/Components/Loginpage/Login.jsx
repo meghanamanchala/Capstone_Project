@@ -10,7 +10,8 @@ import Cookies from 'js-cookie';
 function LoginForm() {
     const [loginUser, setLoginUser] = useState({
         username: "",
-        password: ""
+        password: "",
+        email:""
     });
     const [validationErrors, setValidationErrors] = useState({});
     const [error, setError] = useState("");
@@ -38,7 +39,11 @@ function LoginForm() {
         } else if (loginUser.password.length > 15) {
             errors.password = 'Password should have a maximum length of 15';
         }
-
+        if (!loginUser.email.trim()) {
+            errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(loginUser.email)) {
+            errors.email = 'Email is invalid';
+        }
         return errors;
     };
 
@@ -55,7 +60,8 @@ function LoginForm() {
         try {
             const response = await axios.post('http://localhost:3000/users/login', {
                 username: loginUser.username,
-                password: loginUser.password
+                password: loginUser.password,
+                email: loginUser.email
             });
             if (response.status === 200) {
                 Cookies.set('loggedIn', 'true');
@@ -106,6 +112,14 @@ function LoginForm() {
                             onChange={(e) => handleChange(e, "password")}
                         />
                         {validationErrors.password && <div className='error'>{validationErrors.password}</div>}
+                        <label className='login-email-label'>Email:</label>
+                        <input
+                            className='login-email-input'
+                            type="email"
+                            value={loginUser.email}
+                            onChange={(e) => handleChange(e, "email")}
+                        />
+                        {validationErrors.email && <div className='error'>{validationErrors.email}</div>}
                         {error && <div className='error'>{error}</div>}
                         <div className='loginBtn-container'>
                             <button className='button-19' type="submit">Login</button>
@@ -113,9 +127,9 @@ function LoginForm() {
                         <div>
                             <h3>Not a member? <Link to='/register'>Register here</Link></h3>
                         </div>
-                        <div>
+                        {/* <div>
                             <h4><Link to='/doctorlogin'>Login</Link> as Doctor</h4>
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </div>

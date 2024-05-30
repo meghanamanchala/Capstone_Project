@@ -8,8 +8,9 @@ const registerSchema = Joi.object({
 });
 
 const loginSchema = Joi.object({
-    username: Joi.string().required(),
-    password: Joi.string().required()
+    username: Joi.string().min(3).max(30).required(),
+    password: Joi.string().min(6).max(15).required(),
+    email: Joi.string().email().required()
 });
 
 module.exports = { registerSchema, loginSchema };
