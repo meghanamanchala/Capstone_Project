@@ -63,14 +63,14 @@ userRoute.post("/register",upload.single('profilePicture'), async (req, res) => 
 
 userRoute.post("/login", async (req, res) => {
     try {
-        const { error, value } = loginSchema.validate(req.body);
+        const { error, value } = loginSchema.validate(req.body,{abortEarly:false});
 
         if (error) {
             return res.status(400).send({ error: error.details[0].message });
         }
-        const { username, password } = req.body;
+        const { username, password, email } = req.body;
 
-        const user = await UserModel.findOne({ username });
+        const user = await UserModel.findOne({ username ,email});
         if (!user) {
             return res.status(404).send({ msg: "User not found." });
         }
