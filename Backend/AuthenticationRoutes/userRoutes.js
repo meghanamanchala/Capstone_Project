@@ -31,7 +31,9 @@ const upload = multer({ storage: storage });
 
 userRoute.post("/register",upload.single('profilePicture'), async (req, res) => {
     try {
-        const { error, value } = registerSchema.validate(req.body);
+        const { error, value } = registerSchema.validate(req.body,{
+            abortEarly:false,
+        });
         if (error) {
             return res.status(400).send({ error: error.details[0].message });
         }
