@@ -43,6 +43,10 @@ function DocAppointment() {
 
         if (selectedDoctor) {
           setDoctor(selectedDoctor);
+          setPatientDetails(prevState => ({
+            ...prevState,
+            amount: selectedDoctor.amount
+          }));
         } else {
           setError('Doctor not found');
         }
@@ -151,8 +155,8 @@ function DocAppointment() {
                 <input type="date" id="date" name="date" value={patientDetails.date} onChange={handleInputChange} required />
               </div>
               <div className="input-group">
-                <label htmlFor="amount">Amount to be Paid:</label>
-                <input type="text" id="amount" name="amount" value={patientDetails.amount} onChange={handleInputChange} required />
+                <label htmlFor="amount">Amount to be Paid in ₹:</label>
+                <input type="text" id="amount" name="amount" value={patientDetails.amount} onChange={handleInputChange} readOnly />
               </div>
             </div>
             <div className="input-row">
