@@ -6,7 +6,7 @@ const userRoutes = require('./AuthenticationRoutes/userRoutes.js');
 const postRoutes = require('./PostQueryRoutes/postRoutes.js');
 const patientRoutes = require('./PatientDetails/patientdetailsroutes.js')
 const DocAdminRoute = require('./DoctorLogin/DoctorRoutes.js');
-const cookieParser = require('cookie-parser'); // Import cookie-parser
+const cookieParser = require('cookie-parser'); 
 const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
