@@ -39,7 +39,7 @@ Auth.use(passport.session());
 
 Auth.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google", { scope: ["profile", "email"],prompt:"select_account" })
 );
 
 Auth.get(
@@ -48,6 +48,8 @@ Auth.get(
     failureRedirect: "http://localhost:5173/login",
   }),
   (req, res) => {
+    res.cookie('loggedIn', 'true');
+    res.cookie('username', req.user.displayName); 
     res.redirect("http://localhost:5173/");
   }
 );
