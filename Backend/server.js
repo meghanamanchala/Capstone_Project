@@ -8,7 +8,7 @@ const patientRoutes = require('./PatientDetails/patientdetailsroutes.js')
 const DocAdminRoute = require('./DoctorLogin/DoctorRoutes.js');
 const cookieParser = require('cookie-parser'); 
 const jwt = require('jsonwebtoken');
-
+const auth = require('./GoogleAuth/Authentication.js')
 require('dotenv').config();
 
 const app = express();
@@ -43,7 +43,7 @@ app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/patients', patientRoutes);
 app.use('/docAdmin',DocAdminRoute);
-
+app.use(auth)
 
 app.get('/', (req, res) => {
     res.status(200).send("Connected to DB");
