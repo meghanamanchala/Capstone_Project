@@ -99,7 +99,6 @@ function LoginForm() {
             window.location.href = '/';
             window.alert('Google login successful');
             console.log(user);
-            await auth.signOut();
         } catch (error) {
             setError('An error occurred while logging in with Google');
             console.error(error);
