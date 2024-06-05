@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Department = require('./modeldep.js');
 
+//Different department name and model
 const departments = [
   { name: 'Anesthesiologist', model: Department.AnaesthesiaModel },
   { name: 'Cardiologist', model: Department.CardiologyModel },
@@ -23,7 +24,7 @@ const departments = [
 
 
 departments.forEach(department => {
-
+// GET Endpoint
   router.get(`/${department.name.toLowerCase().replace(' ', '-')}`, async (req, res) => {
     try {
       const departments = await department.model.find();
@@ -33,6 +34,7 @@ departments.forEach(department => {
     }
   });
 
+  //Post Endpoint
   router.post(`/${department.name.toLowerCase()}`, async (req, res) => {
     try {
       const newDepartments = Array.isArray(req.body) ? req.body : [req.body];
@@ -43,6 +45,7 @@ departments.forEach(department => {
     }
   });
 
+  //PutEndpoint
   router.put(`/${department.name.toLowerCase()}/:id`, async (req, res) => {
     try {
       const updatedDepartment = await department.model.findByIdAndUpdate(

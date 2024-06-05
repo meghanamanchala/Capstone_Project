@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import arrow from '../assests/arrow.png';
 import Cookies from 'js-cookie';
 import { auth, provider } from '../../firebase-auth/firebase'; // Ensure this path is correct
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import {signInWithPopup } from 'firebase/auth';
 
 function LoginForm() {
     const [loginUser, setLoginUser] = useState({
@@ -62,8 +62,6 @@ function LoginForm() {
         }
     
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, loginUser.email, loginUser.password);
-            const user = userCredential.user;
             const response = await axios.post('http://localhost:3000/users/login', {
                 username: loginUser.username,
                 password: loginUser.password,
@@ -75,7 +73,6 @@ function LoginForm() {
                 window.location.href = '/';
                 window.alert('Login successful');
                 console.log(response.data);
-                console.log(user);
             } else {
                 setError('Login failed');
             }
