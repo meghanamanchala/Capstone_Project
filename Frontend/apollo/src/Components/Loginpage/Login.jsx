@@ -6,6 +6,8 @@ import LoginImg from '../assests/login.jpg';
 import { Link } from 'react-router-dom';
 import arrow from '../assests/arrow.png';
 import Cookies from 'js-cookie';
+import { auth, provider } from '../../firebase-auth/firebase'; // Ensure this path is correct
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
 function LoginForm() {
     const [loginUser, setLoginUser] = useState({
@@ -47,17 +49,21 @@ function LoginForm() {
         return errors;
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError("");
 
+        setError("");
+    
         const validation = validateForm();
         if (Object.keys(validation).length > 0) {
             setValidationErrors(validation);
             return;
         }
-
+    
         try {
+            const userCredential = await signInWithEmailAndPassword(auth, loginUser.email, loginUser.password);
+            const user = userCredential.user;
             const response = await axios.post('http://localhost:3000/users/login', {
                 username: loginUser.username,
                 password: loginUser.password,
@@ -69,6 +75,7 @@ function LoginForm() {
                 window.location.href = '/';
                 window.alert('Login successful');
                 console.log(response.data);
+                console.log(user);
             } else {
                 setError('Login failed');
             }
@@ -81,6 +88,20 @@ function LoginForm() {
                 setError('An error occurred while logging in');
                 console.error(err);
             }
+        }
+    };
+    const handleGoogleLogin = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            Cookies.set('loggedIn', 'true');
+            Cookies.set('username', user.displayName);
+            window.location.href = '/';
+            window.alert('Google login successful');
+            console.log(user);
+        } catch (error) {
+            setError('An error occurred while logging in with Google');
+            console.error(error);
         }
     };
 
@@ -126,6 +147,11 @@ function LoginForm() {
                         </div>
                         <div>
                             <h3>Not a member? <Link to='/register'>Register here</Link></h3>
+                        </div>
+                        <div className='google-auth'>
+                            <button type='button'  onClick={handleGoogleLogin} className='google-btn'>
+                                Login with Google
+                            </button>
                         </div>
                         {/* <div>
                             <h4><Link to='/doctorlogin'>Login</Link> as Doctor</h4>
