@@ -6,6 +6,7 @@ import LoginImg from "../assests/login.jpg";
 import { Link } from "react-router-dom";
 import arrow from "../assests/arrow.png";
 import Cookies from "js-cookie";
+import GoogleButton from 'react-google-button';
 
 function LoginForm() {
   const [loginUser, setLoginUser] = useState({
@@ -144,9 +145,9 @@ function LoginForm() {
                 Not a member? <Link to="/register">Register here</Link>
               </h3>
             </div>
-            <button className="google-login" onClick={handleGoogleLogin}>
-              Login with Google
-            </button>
+            <div className='google-auth'>
+             <GoogleButton onClick={handleGoogleLogin}/>
+            </div>
           </form>
         </div>
       </div>
