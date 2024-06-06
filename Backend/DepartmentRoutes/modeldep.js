@@ -6,7 +6,8 @@ function createDepartmentModel(departmentName) {
     experience: String,
     education: String,
     languagesSpoken: String,
-    amount:Number
+    amount:Number,
+    gender:String
   });
 
   return mongoose.model(departmentName, DepartmentSchema);
