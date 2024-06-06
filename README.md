@@ -27,3 +27,6 @@ Mediconnect is an innovative and thoughtful capstone project that aims to addres
 
 BackEnd-deployment-link:
 https://capstone-project-k9tj.onrender.com
+
+FrontEnd-deployment-link:
+https://capstone-mediconnect.vercel.app/
