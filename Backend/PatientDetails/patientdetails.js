@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
-const patientDetailsSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+const Doctor = require('../DoctorSchema/DoctorSchema')
+const patientDetailsSchema = new Schema({
   firstName: String,
   lastName: String,
   email: String,
   phoneNumber: String,
   date: Date,
   amount: Number,
-  reason: String
+  reason: String,
+  doctor: { type: Schema.Types.ObjectId, ref: 'Doctor' } // Reference to Doctor model
 });
 
-const PatientDetails = mongoose.model('PateintData',patientDetailsSchema);
-module.exports= PatientDetails;
+const PatientDetails = mongoose.model('PatientDetails', patientDetailsSchema);
+module.exports = PatientDetails;
