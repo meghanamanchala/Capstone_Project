@@ -5,10 +5,10 @@ ul {
 }
 .nav-section
 {
-    display: flex;
+display: flex;
 align-items: center;   
  background-color: #caf0f8;
-    height: 150px;
+ height: 150px;
 }
 
 nav ul {
@@ -28,7 +28,7 @@ nav img:hover{
     margin-left: 250px;
 }
 nav a {
-    margin-left: 280px;
+    margin-left: 180px;
     font-size: 20px;
     font-weight: 600;
     display: flex;

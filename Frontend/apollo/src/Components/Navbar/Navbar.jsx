@@ -28,10 +28,11 @@ function Navbar() {
         <li><img className='logo' src={logo} alt="Logo" /></li>
         <li><Link to="/" style={{ textDecoration: 'none' }}>HOME</Link></li>
         <li><Link to="/appointment" style={{ textDecoration: 'none' }}>APPOINTMENT</Link></li>
+        <li><Link to="/patients"style={{ textDecoration: 'none' }}>PATIENTS DATA</Link></li>
         <li><Link to="/queries" style={{ textDecoration: 'none' }}>QUERIES</Link></li>
         <li className="account-container">
         {isLoggedIn ? (
-        <Link style={{textDecoration: 'none'}}onClick={handleLogout}>Logout</Link> 
+        <Link style={{textDecoration: 'none'}}onClick={handleLogout}>LOGOUT</Link> 
           ) : (
           <Popover>
             <PopoverTrigger>
@@ -39,7 +40,7 @@ function Navbar() {
             </PopoverTrigger>
             <PopoverContent style={{ border: '1px solid #ccc', backgroundColor:"#CAF0F8",margin:'10px',padding: '1em' }}>
               <PopoverCloseButton style={{position:'relative',width:'20px',marginLeft:"300px",border:'none',backgroundColor:'transparent'}}/>
-              <Link style={{position:'relative',right:'200px',textDecoration: 'none' }} to='/login'>Login</Link>
+              <Link style={{position:'relative',right:'100px',textDecoration: 'none' }} to='/login'>Login</Link>
             </PopoverContent>
             </Popover>
           )}

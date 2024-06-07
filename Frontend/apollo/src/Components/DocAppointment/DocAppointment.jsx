@@ -23,7 +23,8 @@ function DocAppointment() {
     phoneNumber: '',
     date: '',
     amount: '',
-    reason: ''
+    reason: '',
+    doctor: doctorId // Include doctor ID
   });
 
   useEffect(() => {
@@ -82,7 +83,8 @@ function DocAppointment() {
         phoneNumber: '',
         date: '',
         amount: '',
-        reason: ''
+        reason: '',
+        doctor: doctorId 
       });
       toast.success('Patient details submitted successfully');
     } catch (error) {
