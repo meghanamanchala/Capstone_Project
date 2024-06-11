@@ -132,7 +132,7 @@ function PatientDetails() {
                     </div>
                     <div>
                     <label>Amount Paid:</label>
-                    <input type="text" name="amount" value={editedPatientData.amount} onChange={handleInputChange} />
+                    <input type="text" name="amount" value={editedPatientData.amount} onChange={handleInputChange} readOnly />
                     </div>
                     <button className="button-18 ml-3" style={{border:"2px solid white",borderRadius:"30px"}} onClick={handleUpdate}>Update</button>
                     <button className="button-18 ml-3" style={{border:"2px solid white",borderRadius:"30px"}} onClick={() => setEditPatient(null)}>Cancel</button>
