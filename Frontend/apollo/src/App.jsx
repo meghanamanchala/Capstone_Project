@@ -11,6 +11,9 @@ import LoginForm from './Components/Loginpage/Login.jsx';
 import RegisterForm from './Components/RegisterPage/Register.jsx';
 import DoctorLogin from './Components/DoctorLoginPage/DoctorLogin.jsx';
 import PatientDetails from './Components/Patient/PatientDetails.jsx';
+import Payment from './Components/Payment.jsx';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 const departments = [
   { name: "Anesthesiologist", path: "anaesthesia" },
@@ -31,6 +34,7 @@ const departments = [
   { name: "Urologist", path: "urology" },
 ];
 
+const stripePromise = loadStripe('pk_test_51POxSU05WctnSMfqFTIUfM6SV20oJZDH6EveZE1NImOkThwgtNUPNifYtyQ1yp4wEpSdIajmShzQnfCyyDBpsMEo009thK6PFO');
 function App() {
   return (
     <>
@@ -45,12 +49,13 @@ function App() {
             element={<Department departmentName={department.name} />}
           />
         ))}
-        <Route path="/book-appointment/:departmentName/:doctorId" element={<DocAppointment />} />
+        <Route path="/book-appointment/:departmentName/:doctorId" element={<Elements stripe={stripePromise}><DocAppointment /></Elements>} />
         <Route path='/register' element={<RegisterForm />}/>
         <Route path="/login" element={<LoginForm />} />
         <Route path='/doctorlogin' element={<DoctorLogin />}/>
         <Route path="/patients" element={<PatientDetails />} />
-      </Routes>
+        <Route path='/payment' element={<Elements stripe={stripePromise}><Payment /></Elements>} />
+        </Routes>
     </>
   );
 }
