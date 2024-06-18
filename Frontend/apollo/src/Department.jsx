@@ -101,6 +101,9 @@ function Department({ departmentName }) {
             <option value="">All</option>
             <option value="English">English</option>
             <option value="Hindi">Hindi</option>
+            <option value="Telugu">Telugu</option>
+            <option value="Kannada">Kannada</option>
+            <option value="Malayalam">Malayalam</option>
           </select>
         </div>
         </div>
