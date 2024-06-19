@@ -19,11 +19,38 @@ function PatientDetails() {
         amount: ''
     });
 
+    const decodeToken = (token) => {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    
+        return JSON.parse(jsonPayload);
+    };
+    
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(";").shift();
+        return null;
+    };
+    
+
     useEffect(() => {
         const fetchPatients = async () => {
             try {
+                const token = getCookie('token');
+                if (!token) {
+                    throw new Error('No token found');
+                }
+
+                const decodedToken = decodeToken(token);
+                const userEmail = decodedToken.email;
+                console.log(userEmail)
                 const response = await axios.get('http://localhost:3000/patients');
-                setPatients(response.data);
+                const filteredPatients = response.data.filter(patient => patient.email === userEmail);
+                setPatients(filteredPatients);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching patient details:', error);

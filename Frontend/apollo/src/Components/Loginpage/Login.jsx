@@ -68,11 +68,15 @@ function LoginForm() {
         email: loginUser.email,
       });
       if (response.status === 200) {
+        const token = response.data.token;
+        Cookies.set("token", token);
         Cookies.set("loggedIn", "true");
         Cookies.set("username", loginUser.username);
+        
         window.location.href = "/";
         window.alert("Login successful");
         console.log(response.data);
+        console.log(token)
       } else {
         setError("Login failed");
       }
