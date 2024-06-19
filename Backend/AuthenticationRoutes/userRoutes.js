@@ -63,14 +63,14 @@ userRoute.post("/register",upload.single('profilePicture'), async (req, res) => 
 
 userRoute.post("/login", async (req, res) => {
     try {
-        const { error, value } = loginSchema.validate(req.body,{abortEarly:false});
+        const { error, value } = loginSchema.validate(req.body, { abortEarly: false });
 
         if (error) {
             return res.status(400).send({ error: error.details[0].message });
         }
         const { username, password, email } = req.body;
 
-        const user = await UserModel.findOne({ username ,email});
+        const user = await UserModel.findOne({ username, email });
         if (!user) {
             return res.status(404).send({ msg: "User not found." });
         }
@@ -79,12 +79,18 @@ userRoute.post("/login", async (req, res) => {
         if (!passwordMatch) {
             return res.status(401).send({ msg: "Invalid username or password." });
         }
-        const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
+
+        const tokenPayload = {
+            userId: user._id,
+            username: user.username,
+            email: user.email
+        };
+
+        const token = jwt.sign(tokenPayload, secretKey, { expiresIn: '1h' });
         
         res.cookie('token', token, { httpOnly: true }); 
         res.cookie('loggedIn', true, { httpOnly: false }); 
-
-        res.status(200).send({ msg: "Logged in successfully." });
+        res.status(200).send({ msg: "Logged in successfully.", token: token });
     } catch (error) {
         res.status(500).send({ error: "Internal server error" });
     }
@@ -92,13 +98,14 @@ userRoute.post("/login", async (req, res) => {
 
 userRoute.post("/logout", async (req, res) => {
     try {
-    res.clearCookie("token");
-    res.clearCookie('loggedIn');
-    res.clearCookie("username");
-    res.status(200).send("Logged out successfully");
+        res.clearCookie("token");
+        res.clearCookie('loggedIn');
+        res.clearCookie("username");
+        res.status(200).send("Logged out successfully");
     } catch (error) {
         res.status(500).send({ error: "Internal server error" });
     }
 });
+
 
 module.exports = userRoute;

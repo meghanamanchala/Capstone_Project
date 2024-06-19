@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from "../assests/logo.jpeg";
 import account from '../assests/account.png'
 import "./Navbar.css";
+import axios from 'axios'; 
 import Cookies from 'js-cookie';
 import {
   Popover,
@@ -15,13 +16,25 @@ import {
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get('loggedIn') === 'true');
 
-  const handleLogout = (e) => {
-      e.preventDefault();
-      console.log("Logging out...");
-      Cookies.remove('loggedIn', { path: '/' });
-      Cookies.remove('username', { path: '/' });
-      setIsLoggedIn(false); 
-  };
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('http://localhost:3000/users/logout');
+        if (response.status === 200) {
+            Cookies.remove('loggedIn', { path: '/' });
+            Cookies.remove('username', { path: '/' });
+            Cookies.remove('token',{path:'/'});
+            setIsLoggedIn(false);
+            console.log("Logged out successfully");
+        } else {
+            console.error("Logout failed:", response.data.error);
+        }
+    } catch (error) {
+        console.error("Logout error:", error);
+    }
+};
+
+
   return (
     <nav className='nav-section'>
       <ul>
