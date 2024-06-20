@@ -9,6 +9,7 @@ display: flex;
 align-items: center;   
  background-color: #caf0f8;
  height: 150px;
+ width: 200vh;
 }
 
 nav ul {
