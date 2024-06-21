@@ -53,6 +53,8 @@ function Payment() {
     }
   }, [paymentStatus, navigate]);
 
+  // 4000 0027 6000 3184 - Card Number
+  
   return (
     <div className='payment-box'>
     <div className="payment-container">
