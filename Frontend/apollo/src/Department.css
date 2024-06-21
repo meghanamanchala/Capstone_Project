@@ -215,3 +215,45 @@ margin: 2px;
   font-size: larger;
   margin-right: 5px;
 }
+
+@media only screen and (max-width: 768px) {
+  .department {
+    margin: 20px;
+  }
+
+  .doctor-item {
+    flex: 1 1 100%; 
+  }
+
+  .doctor-box {
+    width: calc(100% - 40px);
+    max-width: 100%; 
+  }
+
+  .doctor-img {
+    width: 80px;
+  }
+
+  .doct {
+    gap: 10px; 
+  }
+
+  .button-91 {
+    padding: 12px 20px; 
+    font-size: 14px; 
+  }
+
+  .modal-content {
+    width: calc(100% - 20px); 
+    max-width: 90%; 
+  }
+  .modal-body > p {
+    margin: 10px;
+  }
+
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

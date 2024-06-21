@@ -116,3 +116,123 @@ border-radius: 20px;
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+@media only screen and (max-width: 768px) {
+  .doctor-boxing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #2ab5d16e;
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .doctor-info {
+    border: 1px solid black;
+    border-radius: 1px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-width: 100%;
+    margin: 20px auto;
+  }
+
+  .doctor-picture {
+    border-radius: 20px;
+    width: 100%;
+    max-width: 100px;
+    align-self: center;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    background-color: #00bbff;
+    color: white;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .side-by-side {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .side-by-side > div {
+    color: #0056b3;
+    font-weight: 500;
+    font-size: medium;
+    width: 40%;
+    max-width: 120px;
+  }
+
+  .side-by-side > p {
+    font-size: medium;
+    width: 55%;
+    max-width: 400px;
+    margin-bottom: 10px;
+  }
+
+  .appointment-form {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .appointment-form h3 {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .appointment-form label {
+    display: block;
+    font-size: medium;
+    color: #033e7e;
+    font-weight: bold;
+  }
+
+  .appointment-form input[type="text"],
+  .appointment-form input[type="email"],
+  .appointment-form input[type="tel"],
+  .appointment-form input[type="date"],
+  .appointment-form textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: medium;
+  }
+
+  .appointment-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .appointment-form button:hover {
+    background-color: #0056b3;
+  }
+
+  .input-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .input-group {
+    flex: 0 0 48%;
+  }
+}
