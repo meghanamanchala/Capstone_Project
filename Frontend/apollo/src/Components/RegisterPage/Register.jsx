@@ -106,16 +106,6 @@ function Register() {
             <div className='register-page'>
                 <form className='register-form' onSubmit={handleSubmit}>
                     <div>
-                        <label className='register-label'>Email:</label>
-                        <input
-                            className='register-input'
-                            type="email"
-                            value={registerUser.email}
-                            onChange={(e) => handleChange(e, 'email')}
-                        />
-                        {formErrors.email && <span className="error">{formErrors.email}</span>}
-                    </div>
-                    <div>
                         <label className="register-label">Username:</label>
                         <input
                             className="register-input"
@@ -136,7 +126,17 @@ function Register() {
                         {formErrors.password && <span className="error">{formErrors.password}</span>}
                     </div>
                     <div>
-                        <label className="register-label">Upload your file:</label>
+                        <label className='register-label'>Email:</label>
+                        <input
+                            className='register-input'
+                            type="email"
+                            value={registerUser.email}
+                            onChange={(e) => handleChange(e, 'email')}
+                        />
+                        {formErrors.email && <span className="error">{formErrors.email}</span>}
+                    </div>
+                    <div>
+                        <label className="register-label">Upload your profile:</label>
                         <input className="register-input" type="file" onChange={handleFileChange} />
                     </div>
                     <div className='registerBtn-container'>

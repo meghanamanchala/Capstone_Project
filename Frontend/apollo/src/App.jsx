@@ -9,7 +9,7 @@ import Department from './Department.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from './Components/Loginpage/Login.jsx';
 import RegisterForm from './Components/RegisterPage/Register.jsx';
-import DoctorLogin from './Components/DoctorLoginPage/DoctorLogin.jsx';
+// import DoctorLogin from './Components/DoctorLoginPage/DoctorLogin.jsx';
 import PatientDetails from './Components/Patient/PatientDetails.jsx';
 import Payment from './Components/Payment.jsx';
 import { Elements } from '@stripe/react-stripe-js';
@@ -52,7 +52,7 @@ function App() {
         <Route path="/book-appointment/:departmentName/:doctorId" element={<Elements stripe={stripePromise}><DocAppointment /></Elements>} />
         <Route path='/register' element={<RegisterForm />}/>
         <Route path="/login" element={<LoginForm />} />
-        <Route path='/doctorlogin' element={<DoctorLogin />}/>
+        {/* <Route path='/doctorlogin' element={<DoctorLogin />}/> */}
         <Route path="/patients" element={<PatientDetails />} />
         <Route path='/payment' element={<Elements stripe={stripePromise}><Payment /></Elements>} />
         </Routes>
