@@ -5,7 +5,7 @@ const departmentRoutes = require('./DepartmentRoutes/department.js');
 const userRoutes = require('./AuthenticationRoutes/userRoutes.js');
 const postRoutes = require('./PostQueryRoutes/postRoutes.js');
 const patientRoutes = require('./PatientDetails/patientdetailsroutes.js')
-const DocAdminRoute = require('./DoctorLogin/DoctorRoutes.js');
+// const DocAdminRoute = require('./DoctorLogin/DoctorRoutes.js');
 const cookieParser = require('cookie-parser'); 
 const jwt = require('jsonwebtoken');
 const paymentRoutes = require('./Payment/paymentGateway.js');
@@ -43,7 +43,7 @@ app.use('/departments', departmentRoutes);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/patients', patientRoutes);
-app.use('/docAdmin',DocAdminRoute);
+// app.use('/docAdmin',DocAdminRoute);
 app.use(auth)
 app.use('/payments', paymentRoutes); 
 

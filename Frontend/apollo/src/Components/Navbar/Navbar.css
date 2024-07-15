@@ -1,61 +1,65 @@
-/* Base styles for desktop */
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 40px;
-}
-
 .nav-section {
     display: flex;
-    align-items: center;   
+    align-items: center;
     background-color: #caf0f8;
-    height: 150px;
-    width: 100%;
-    overflow: hidden;
+    padding: 20px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav ul {
+.nav-section ul {
     display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; 
 }
 
-nav img {
-    width: 200px;
+.nav-section img.logo {
+    width: 170px;
+    height: auto;
     transition: transform 0.2s ease;
 }
 
-nav img:hover {
+.nav-section img.logo:hover {
     transform: scale(1.1);
 }
 
-.account {
-    width: 80px;
-    margin-left: 250px;
+.nav-section .account-container {
+    margin-left: auto;
 }
 
-nav a {
-    margin-left: 180px;
-    font-weight: 600;
-    margin-top: 25px;
-    text-decoration: none; 
-    color: white;
-    background-color: black; 
-    border-radius: 30px;
+.nav-section .account {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-left: 20px;
+    cursor: pointer;
     transition: transform 0.2s ease;
-    text-shadow: 2px 0px 4px rgba(0, 0, 0, 0.149); 
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    font-size: 17px;
 }
 
-nav a:hover {
+.nav-section .account:hover {
+    transform: scale(1.1);
+}
+
+.nav-section a {
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-shadow: 2px 0px 4px rgba(0, 0, 0, 0.149);
+    margin-left: 10rem;
+    display: inline-block;
+    background-color: black;
+}
+
+.nav-section a:hover {
     background-color: aliceblue;
     color: blue;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
-
 @media only screen and (max-width: 768px) {
     .nav-section {
         display: flex;
