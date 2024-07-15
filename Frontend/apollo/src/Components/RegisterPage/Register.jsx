@@ -89,7 +89,7 @@ function Register() {
             if (response.status >= 200 && response.status < 300) {
                 setRegisterStatus(true);
                 window.alert('Registration successful');
-                window.location.href = '/login';
+                window.location.href = '/otp';
             } else {
                 console.log('Registration Failed');
             }
