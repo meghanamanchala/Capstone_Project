@@ -32,7 +32,6 @@ function DocAppointment() {
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {
-        // Check if departmentName and doctorId are valid
         if (!departmentName || !doctorId) {
           setError('Department name or doctor ID not provided');
           return;
@@ -92,7 +91,7 @@ function DocAppointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Check if any required fields are empty before proceeding
+    // Checking if any required fields are empty before proceeding
     if (!patientDetails.firstName ||
         !patientDetails.lastName ||
         !patientDetails.email ||
@@ -100,7 +99,7 @@ function DocAppointment() {
         !patientDetails.date ||
         !patientDetails.reason) {
       toast.error('Please fill in all fields'); 
-      return; // Prevent further execution if any field is empty
+      return; 
     }
 
     try {
@@ -199,7 +198,7 @@ function DocAppointment() {
                   <textarea id="reason" name="reason" value={patientDetails.reason} onChange={handleInputChange} required />
                 </div>
               </div>
-              <button type="submit">Book Appointment</button> {/* Changed type to 'submit' to trigger form submission */}
+              <button type="submit">Submit</button> 
               {clientSecret && <Payment clientSecret={clientSecret} />}
             </form>
           </>
