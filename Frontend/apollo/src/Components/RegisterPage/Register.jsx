@@ -80,7 +80,7 @@ function Register() {
                 formData.append('profilePicture', selectedFile);
             }
 
-            const response = await axios.post('http://localhost:3000/users/register', formData, {
+            const response = await axios.post('http://localhost:3001/users/register', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -89,7 +89,7 @@ function Register() {
             if (response.status >= 200 && response.status < 300) {
                 setRegisterStatus(true);
                 window.alert('Registration successful');
-                window.location.href = '/otp';
+                window.location.href = '/';
             } else {
                 console.log('Registration Failed');
             }
@@ -116,16 +116,6 @@ function Register() {
                         {formErrors.username && <span className="error">{formErrors.username}</span>}
                     </div>
                     <div>
-                        <label className="register-label">Password: </label>
-                        <input
-                            className="register-input"
-                            type="password"
-                            value={registerUser.password}
-                            onChange={(e) => handleChange(e, "password")}
-                        />
-                        {formErrors.password && <span className="error">{formErrors.password}</span>}
-                    </div>
-                    <div>
                         <label className='register-label'>Email:</label>
                         <input
                             className='register-input'
@@ -134,6 +124,16 @@ function Register() {
                             onChange={(e) => handleChange(e, 'email')}
                         />
                         {formErrors.email && <span className="error">{formErrors.email}</span>}
+                    </div>
+                    <div>
+                        <label className="register-label">Password: </label>
+                        <input
+                            className="register-input"
+                            type="password"
+                            value={registerUser.password}
+                            onChange={(e) => handleChange(e, "password")}
+                        />
+                        {formErrors.password && <span className="error">{formErrors.password}</span>}
                     </div>
                     <div>
                         <label className="register-label">Upload your profile:</label>

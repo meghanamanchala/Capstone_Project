@@ -62,7 +62,7 @@ function LoginForm() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/users/login", {
+      const response = await axios.post("http://localhost:3001/users/login", {
         username: loginUser.username,
         password: loginUser.password,
         email: loginUser.email,
@@ -93,7 +93,7 @@ function LoginForm() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:3000/auth/google';
+    window.location.href = 'http://localhost:3001/auth/google';
   };
 
   return (
@@ -118,16 +118,6 @@ function LoginForm() {
               <div className="error">{validationErrors.username}</div>
             )}
             <br />
-            <label className="login-password-label">Password:</label>
-            <input
-              className="login-password-input"
-              type="password"
-              value={loginUser.password}
-              onChange={(e) => handleChange(e, "password")}
-            />
-            {validationErrors.password && (
-              <div className="error">{validationErrors.password}</div>
-            )}
             <label className="login-email-label">Email:</label>
             <input
               className="login-email-input"
@@ -138,6 +128,16 @@ function LoginForm() {
             {validationErrors.email && (
               <div className="error">{validationErrors.email}</div>
             )}
+            <label className="login-password-label">Password:</label>
+            <input
+              className="login-password-input"
+              type="password"
+              value={loginUser.password}
+              onChange={(e) => handleChange(e, "password")}
+            />
+            {validationErrors.password && (
+              <div className="error">{validationErrors.password}</div>
+            )}           
             {error && <div className="error">{error}</div>}
             <div className="loginBtn-container">
               <button className="button-19" type="submit">
