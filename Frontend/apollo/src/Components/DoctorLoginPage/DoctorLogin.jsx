@@ -18,7 +18,7 @@
 //     const handleSubmit = async (e) => {
 //         e.preventDefault();
 //         try {
-//             const response = await axios.post('http://localhost:3000/docAdmin/doctorLogin', {
+//             const response = await axios.post('http://localhost:3001/docAdmin/doctorLogin', {
 //                 Docusername: docAdmin.username, 
 //                 Docpassword: docAdmin.password  
 //             });

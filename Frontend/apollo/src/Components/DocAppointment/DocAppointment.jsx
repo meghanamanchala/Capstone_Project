@@ -37,7 +37,7 @@ function DocAppointment() {
           return;
         }
 
-        const response = await axios.get(`http://localhost:3000/departments/${departmentName.toLowerCase()}`);
+        const response = await axios.get(`http://localhost:3001/departments/${departmentName.toLowerCase()}`);
         const doctors = response.data;
 
         // Find the doctor with the matching doctorId
@@ -74,7 +74,7 @@ function DocAppointment() {
 
   const handlePayment = async () => {
     try {
-      const response = await fetch('http://localhost:3000/payments/create-payment-intent', {
+      const response = await fetch('http://localhost:3001/payments/create-payment-intent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: patientDetails.amount }), 
@@ -103,7 +103,7 @@ function DocAppointment() {
     }
 
     try {
-      await axios.post('http://localhost:3000/patients', patientDetails);
+      await axios.post('http://localhost:3001/patients', patientDetails);
 
       // Clear form fields after successful submission
       setPatientDetails({

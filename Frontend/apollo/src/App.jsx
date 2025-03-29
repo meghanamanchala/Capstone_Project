@@ -13,7 +13,7 @@ import RegisterForm from './Components/RegisterPage/Register.jsx';
 import PatientDetails from './Components/Patient/PatientDetails.jsx';
 import Payment from './Components/Payment.jsx';
 import { Elements } from '@stripe/react-stripe-js';
-import OTP from './Components/OTP/otp-provider.jsx';
+// import OTP from './Components/OTP/otp-provider.jsx';
 import { loadStripe } from '@stripe/stripe-js';
 
 const departments = [
@@ -56,7 +56,7 @@ function App() {
         {/* <Route path='/doctorlogin' element={<DoctorLogin />}/> */}
         <Route path="/patients" element={<PatientDetails />} />
         <Route path='/payment' element={<Elements stripe={stripePromise}><Payment /></Elements>} />
-        <Route path='/otp' element={<OTP />}/>
+        {/* <Route path='/otp' element={<OTP />}/> */}
         </Routes>
     </>
   );
