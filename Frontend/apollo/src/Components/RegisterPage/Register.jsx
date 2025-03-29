@@ -80,7 +80,7 @@ function Register() {
                 formData.append('profilePicture', selectedFile);
             }
 
-            const response = await axios.post('http://localhost:3001/users/register', formData, {
+            const response = await axios.post('https://capstone-project-1-intc.onrender.com/users/register', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

@@ -19,7 +19,7 @@ function Navbar() {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:3001/users/logout');
+        const response = await axios.post('https://capstone-project-1-intc.onrender.com/users/logout');
         if (response.status === 200) {
             Cookies.remove('loggedIn', { path: '/' });
             Cookies.remove('username', { path: '/' });

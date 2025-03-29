@@ -62,7 +62,7 @@ function LoginForm() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/users/login", {
+      const response = await axios.post("https://capstone-project-1-intc.onrender.com/users/login", {
         username: loginUser.username,
         password: loginUser.password,
         email: loginUser.email,
@@ -93,7 +93,7 @@ function LoginForm() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:3001/auth/google';
+    window.location.href = 'https://capstone-project-1-intc.onrender.com/auth/google';
   };
 
   return (
